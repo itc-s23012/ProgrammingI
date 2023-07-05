@@ -78,5 +78,5 @@
 ## Pythonの授業
 
 ## 2.1 整数を使った計算
-- [Q2_1_1.py](CHAPTER02/Q2_1_1.py)
-- [Q2_1_2.py](CHAPTER02/Q2_1_2.py)
+- [問題１](CHAPTER02/Q2_1_1.py)
+- [問題２](CHAPTER02/Q2_1_2.py)
