@@ -116,6 +116,19 @@
 ### **3.2 if文の応用**
 - [問題１](CHAPTER03/Q3_2_1.py)
 - [問題２](CHAPTER03/Q3_2_2.py)
-### **3.3for文の基礎**
+### **3.3 for文の基礎**
 - [問題１](CHAPTER03/Q3_3_1.py)
-- [問題２](CHAPTER03/Q3_3_2.py)    
+- [問題２](CHAPTER03/Q3_3_2.py)  
+### **3.4 制御構文**
+- [問題１](CHAPTER03/Q3_4_1.py)
+- [問題２](CHAPTER03/Q3_4_2.py)
+### **3.5 while文の基礎**
+- [問題１](CHAPTER03/Q3_5_1.py)
+- [問題２](CHAPTER03/Q3_5_2.py)
+### **3.6 whileを使ったプログラミング**
+- [問題１](CHAPTER03/Q3_6_1.py)
+- [問題１](CHAPTER03/aa.py)
+- [問題２](CHAPTER03/Q3_6_2.py)
+- [問題２](CHAPTER03/bb.py)
+
+
