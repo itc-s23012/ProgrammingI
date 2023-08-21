@@ -1,67 +1,47 @@
+def is_leap_year(year):
+    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
-# -*- coding:utf-8 -*-
+def get_days_in_month(month, year):
+    days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if month == 2 and is_leap_year(year):
+        return 29
+    return days_per_month[month - 1]
 
-import jpbizday
-import datetime
-import calendar
+def get_first_day_of_month(month, year):
+    q = 1
+    m = month
+    Y = year if month > 2 else year - 1
+    K = Y % 100
+    J = Y // 100
+    h = (q + 13*(m + 1) // 5 + K + K // 4 + J // 4 - 2 * J) % 7
+    return h
 
-class calWidget(tk.Frame):
-    def __init__(self, master = None, cnf = {}, **kw):
+def create_calendar(month, year):
+    days_in_month = get_days_in_month(month, year)
+    first_day = get_first_day_of_month(month, year)
 
-        tk.Frame.__init__(self, master, cnf, **kw)
+    days_of_week = ['日', '月', '火', '水', '木', '金', '土']
+    color_code = {
+        "土": "\033[91m",
+        "日": "\033[94m",
+    }
+    header = f'{year}年{month}月'
+    calendar_str = header.center(20) + '\n'
+    calendar_str += ' '.join(days_of_week) + '\n'
 
-root = tk.Tk()
-root.title("calendar")
-root.geometry('600x400')
+    calendar_str += '   ' * first_day
 
-# 作成したウィジットを配置
-widget = calWidget(root)
-widget.pack()
+    current_day = 1
+    day_of_week = first_day
+    while current_day <= days_in_month:
+        calendar_str += f'{current_day:2} '
+        current_day += 1
+        day_of_week += 1
+        if day_of_week == 7:
+            calendar_str += '\n'
+            day_of_week = 0
 
-root.mainloop()
-       
-# frame_calendar部分の作成
-        self.calDate = tk.Frame(self)
-        self.calDate.pack()
+    return calendar_str
 
-        # 日付部分を作成するメソッドの呼び出し
-        self.createCal(self.year, self.month)
-
-    # 日付を表示
-    def createCal(self, year, month):
-
-        # 初期化
-        try:
-            for key,item in self.day.items():
-                item.destroy()
-        except:
-            pass
-
-        cal = calendar.Calendar()
-        cal.setfirstweekday(6)
-        # 指定した年月のカレンダーをリストで返す
-        days = cal.monthdayscalendar(year, month)
-        days_count = sum(len(v) for v in days)
-
-        self.day = {}
-        # 日付
-        for y in range(0, len(days)):
-            for x in range(0, 7):
-                # 平日：黒、土曜：青、祝日、日曜：赤
-                if days[y][x] != 0:
-                    date = days[y][x]
-                    if jpbizday.is_bizday(datetime.date(nowYear, nowMonth, date)):
-                        color = "black"
-
-                    elif x == 6:
-                        color = "blue"
-                    else:
-                        color = "red"
-
-                    self.day[date] = tk.Button(self.frame_calendar, text = date, fg = color, height = 2, width = 4, relief = "flat")
-                    self.day[date].bind("<Button-1>", callback)
-
-                    self.day[date].grid(column = x, row = y, padx = 10, pady=5)
-
-
+print(create_calendar(8, 2023))
 
